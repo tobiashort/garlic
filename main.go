@@ -35,10 +35,8 @@ func main() {
 	var dir string
 	var editor string
 
-	editor = os.Getenv("EDITOR")
-
 	flag.Usage = usage
-	flag.StringVar(&editor, "editor", "", "editor to be used")
+	flag.StringVar(&editor, "editor", os.Getenv("EDITOR"), "editor to be used")
 	flag.Parse()
 
 	if flag.NArg() == 0 {
@@ -158,6 +156,10 @@ linesBeforeLoop:
 				})
 			}
 		}
+	}
+
+	if len(actions) == 0 {
+		os.Exit(0)
 	}
 
 confirmation:
